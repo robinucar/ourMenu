@@ -113,7 +113,7 @@ function displayCategoryItems() {
   let categories = [];
 
   //all button manually set
-  let categoryContent = `<button type="button" class="filter-btn" data-id="all">all</button>`
+  let categoryContent = `<button type="button" class="filter-btn" data-id="all">all</button>`;
 
   menu.forEach((item) => {
     if (categories.indexOf(item.category) === -1) {
@@ -122,7 +122,17 @@ function displayCategoryItems() {
   });
 
   categories.forEach((category) => {
-    categoryContent += `<button type="button" class="filter-btn" data-id="${category}">${category}</button>`
+    categoryContent += `<button type="button" class="filter-btn" data-id="${category}">${category}</button>`;
   });
   categoryElement.innerHTML = categoryContent;
+
+  const filterButtons = document.querySelectorAll(".filter-btn");
+
+  filterButtons.forEach(button => {
+    button.addEventListener("click", function(e) {
+       //food filter
+       const filteredMenu = menu.filter(item => item.category === e.target.getAttribute("data-id"))
+       console.log(filteredMenu)
+    })
+  })
 }
